@@ -1,11 +1,7 @@
-import Header from "./components/Header";
+import AppLayout from "./layouts/AppLayout";
 
 function App() {
-  return (
-    <>
-      <Header />
-    </>
-  );
+  return <AppLayout />;
 }
 
 export default App;
