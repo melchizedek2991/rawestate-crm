@@ -2,10 +2,13 @@ import { useState } from "react";
 
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
+import Dashboard from "../pages/Dashboard";
+import Properties from "../pages/Properties";
 
 function AppLayout() {
 
   const [activeItem, setActiveItem] = useState("Dashboard");
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <div style={{
       display: "flex",         
@@ -25,12 +28,28 @@ function AppLayout() {
         
         <Topbar title={activeItem} />
 
-        <main style={{
-          flex: 1,
-          padding: "24px",
-          overflowY: "auto"
-        }}>
-          <h1>Main Content</h1>
+        <main
+            style={{
+              flex: 1,
+              padding: "24px",
+              overflowY: "auto"
+            }}
+          >
+
+            <button
+                onClick={() => setIsLoggedIn(!isLoggedIn)}
+                style={{
+                  padding: "10px 18px",
+                  marginBottom: "20px",
+                  cursor: "pointer"
+                }}
+              >
+                Toggle Login
+            </button>
+    
+            {activeItem === "Dashboard" && <Dashboard />}
+            {activeItem === "Properties" && <Properties />}
+            
         </main>
       </div>
     </div>
