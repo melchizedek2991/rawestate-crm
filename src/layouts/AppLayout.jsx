@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import Dashboard from "../pages/Dashboard";
 import Properties from "../pages/Properties";
+import Leads from "../pages/Leads";
 
 function AppLayout() {
 
@@ -49,7 +50,8 @@ function AppLayout() {
     
             {activeItem === "Dashboard" && <Dashboard />}
             {activeItem === "Properties" && <Properties />}
-            
+            {activeItem === "Leads" && <Leads />}
+
         </main>
       </div>
     </div>
