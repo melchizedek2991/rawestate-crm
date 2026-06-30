@@ -9,7 +9,7 @@ import Leads from "../pages/Leads";
 function AppLayout() {
 
   const [activeItem, setActiveItem] = useState("Dashboard");
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
   return (
     <div style={{
       display: "flex",         
@@ -36,17 +36,6 @@ function AppLayout() {
               overflowY: "auto"
             }}
           >
-
-            <button
-                onClick={() => setIsLoggedIn(!isLoggedIn)}
-                style={{
-                  padding: "10px 18px",
-                  marginBottom: "20px",
-                  cursor: "pointer"
-                }}
-              >
-                Toggle Login
-            </button>
     
             {activeItem === "Dashboard" && <Dashboard />}
             {activeItem === "Properties" && <Properties />}
