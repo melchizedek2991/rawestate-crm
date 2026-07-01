@@ -54,6 +54,29 @@ function Dashboard() {
           status: "Available"
         }
       ];
+
+      const activities = [
+            {
+              id: 1,
+              text: "New lead registered",
+              time: "2 minutes ago"
+            },
+            {
+              id: 2,
+              text: "Lekki Duplex marked as Sold",
+              time: "15 minutes ago"
+            },
+            {
+              id: 3,
+              text: "New client created",
+              time: "1 hour ago"
+            },
+            {
+              id: 4,
+              text: "Agent profile updated",
+              time: "Today"
+            }
+          ];
       
     return (
       <div>
@@ -119,11 +142,51 @@ function Dashboard() {
           </table>
         </div>
         
-      </div>
-      
-    );
-    
-}
+        <div
+          style={{
+            marginTop: "40px",
+            backgroundColor: "#fff",
+            borderRadius: "12px",
+            padding: "20px",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.08)"
+          }}
+        >
+          <h2 style={{ marginTop: 0 }}>Recent Activity</h2>
+
+          {activities.map((activity) => (
+            <div
+              key={activity.id}
+              style={{
+                padding: "12px 0",
+                borderBottom: "1px solid #e2e8f0"
+              }}
+            >
+              <div
+                style={{
+                  fontWeight: "600",
+                  color: "#1e293b"
+                }}
+              >
+                {activity.text}
+              </div>
+
+              <div
+                style={{
+                  fontSize: "13px",
+                  color: "#64748b",
+                  marginTop: "4px"
+                }}
+              >
+                {activity.time}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        </div>
+        );
+
+        }
 
   const tableHeaderStyle = {
     textAlign: "left",
@@ -140,4 +203,4 @@ function Dashboard() {
   fontSize: "14px"
 };
 
-export default Dashboard;
+export default Dashboard; 
