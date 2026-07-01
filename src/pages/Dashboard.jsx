@@ -151,7 +151,7 @@ function Dashboard() {
             boxShadow: "0 2px 8px rgba(0,0,0,0.08)"
           }}
         >
-          <h2 style={{ marginTop: 0 }}>Recent Activity</h2>
+          <h2 style={{ marginTop: 0 }}>Recents Activity</h2>
 
           {activities.map((activity) => (
             <div
