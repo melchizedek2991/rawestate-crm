@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function Properties() {
 
     const properties = [
@@ -26,6 +28,11 @@ function Properties() {
             status: "Available"
           }
         ];
+
+const [search, setSearch] = useState("");
+const filteredProperties = properties.filter((property) =>
+  property.name.toLowerCase().includes(search.toLowerCase())
+);
   return (
     <div>
 
@@ -47,24 +54,26 @@ function Properties() {
             padding: "10px 18px",
             borderRadius: "8px",
             cursor: "pointer",
-            fontWeight: "600"
+           fontWeight: "600"
           }}
         >
-          + Add Property
+         + Add Property
         </button>
       </div>
 
-      <input
-        type="text"
-        placeholder="Search properties..."
-        style={{
-          width: "100%",
-          padding: "12px",
-          borderRadius: "8px",
-          border: "1px solid #cbd5e1",
-          marginBottom: "24px"
-        }}
-      />
+<input
+  type="text"
+  placeholder="Search properties..."
+  value={search}
+  onChange={(event) => setSearch(event.target.value)}
+  style={{
+    width: "100%",
+    padding: "12px",
+    borderRadius: "8px",
+    border: "1px solid #cbd5e1",
+    marginBottom: "24px"
+  }}
+/>
 
       <table
           style={{
@@ -84,7 +93,8 @@ function Properties() {
       </thead>
 
       <tbody>
-        {properties.map((property) => (
+
+	{filteredProperties.map((property) => (
           <tr key={property.id}>
             <td style={tableCellStyle}>{property.name}</td>
             <td style={tableCellStyle}>{property.price}</td>
