@@ -1,8 +1,7 @@
 import { useState } from "react";
 
 function Properties() {
-
-    const properties = [
+    const [properties, setProperties] = useState([
           {
             id: 1,
             name: "Lekki Duplex",
@@ -27,12 +26,48 @@ function Properties() {
             price: "₦450M",
             status: "Available"
           }
-        ];
+        ]);
 
 const [search, setSearch] = useState("");
+const [propertyName, setPropertyName] = useState("");
+const [propertyPrice, setPropertyPrice] = useState("");
+const [propertyStatus, setPropertyStatus] = useState("Available");
+const [editingId, setEditingId] = useState(null);
 const filteredProperties = properties.filter((property) =>
   property.name.toLowerCase().includes(search.toLowerCase())
 );
+
+function deleteProperty(id) {
+  const updatedProperties = properties.filter(
+    (property) => property.id !== id
+  );
+
+  setProperties(updatedProperties);
+}
+
+    function addProperty() {
+      const newProperty = {
+        id: Date.now(),
+        name: propertyName,
+        price: propertyPrice,
+        status: propertyStatus
+      };
+
+      setProperties([...properties, newProperty]);
+
+      setPropertyName("");
+      setPropertyPrice("");
+      setPropertyStatus("Available");
+    }
+
+    function editProperty(property) {
+      setPropertyName(property.name);
+      setPropertyPrice(property.price);
+      setPropertyStatus(property.status);
+
+      setEditingId(property.id);
+    }
+        
   return (
     <div>
 
@@ -47,6 +82,7 @@ const filteredProperties = properties.filter((property) =>
         <h1>Properties</h1>
 
         <button
+          onClick={addProperty}
           style={{
             backgroundColor: "#3b82f6",
             color: "#fff",
@@ -59,6 +95,37 @@ const filteredProperties = properties.filter((property) =>
         >
          + Add Property
         </button>
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+            marginBottom: "24px",
+            marginTop: "20px"
+          }}
+          >
+            <input
+              type="text"
+              placeholder="Property Name"
+              value={propertyName}
+              onChange={(e) => setPropertyName(e.target.value)}
+            />
+
+            <input
+              type="text"
+              placeholder="Price"
+              value={propertyPrice}
+              onChange={(e) => setPropertyPrice(e.target.value)}
+            />
+
+          <select
+            value={propertyStatus}
+            onChange={(e) => setPropertyStatus(e.target.value)}
+          >
+            <option>Available</option>
+            <option>Pending</option>
+            <option>Sold</option>
+          </select>
+        </div>
       </div>
 
 <input
@@ -89,6 +156,7 @@ const filteredProperties = properties.filter((property) =>
           <th style={tableHeaderStyle}>Property</th>
           <th style={tableHeaderStyle}>Price</th>
           <th style={tableHeaderStyle}>Status</th>
+          <th style={tableHeaderStyle}>Actions</th>
         </tr>
       </thead>
 
@@ -98,7 +166,56 @@ const filteredProperties = properties.filter((property) =>
           <tr key={property.id}>
             <td style={tableCellStyle}>{property.name}</td>
             <td style={tableCellStyle}>{property.price}</td>
-            <td style={tableCellStyle}>{property.status}</td>
+            <td style={tableCellStyle}>
+            <span
+              style={{
+                padding: "6px 12px",
+                borderRadius: "999px",
+                color: "#fff",
+                backgroundColor:
+                  property.status === "Available"
+                    ? "#10b981"
+                    : property.status === "Pending"
+                    ? "#f59e0b"
+                    : "#ef4444",
+                fontSize: "13px",
+                fontWeight: "600"
+              }}
+            >
+              {property.status}
+            </span>
+          </td>
+          
+          <td style={tableCellStyle}>
+              <button
+                onClick={() => editProperty(property)}
+                style={{
+                  backgroundColor: "#3b82f6",
+                  color: "#fff",
+                  border: "none",
+                  padding: "6px 12px",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                  marginRight: "8px"
+                }}
+              >
+                Edit
+              </button>
+
+              <button
+                onClick={() => deleteProperty(property.id)}
+                style={{
+                  backgroundColor: "#ef4444",
+                  color: "#fff",
+                  border: "none",
+                  padding: "6px 12px",
+                  borderRadius: "6px",
+                  cursor: "pointer"
+                }}
+              >
+                Delete
+              </button>
+            </td>
           </tr>
         ))}
       </tbody>
