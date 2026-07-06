@@ -1,0 +1,20 @@
+.property-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table-header {
+  text-align: left;
+  padding: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+}
+
+.table-cell {
+  padding: 14px;
+  border-bottom: 1px solid #e2e8f0;
+}

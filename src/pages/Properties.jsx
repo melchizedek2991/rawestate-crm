@@ -1,4 +1,6 @@
 import { useState } from "react";
+import PropertyForm from "../components/PropertyForm";
+import PropertyTable from "../components/PropertyTable";
 
 function Properties() {
     const [properties, setProperties] = useState([
@@ -95,37 +97,17 @@ function deleteProperty(id) {
         >
          + Add Property
         </button>
-        <div
-          style={{
-            display: "flex",
-            gap: "12px",
-            marginBottom: "24px",
-            marginTop: "20px"
-          }}
-          >
-            <input
-              type="text"
-              placeholder="Property Name"
-              value={propertyName}
-              onChange={(e) => setPropertyName(e.target.value)}
-            />
+        
+        <PropertyForm
+          propertyName={propertyName}
+          setPropertyName={setPropertyName}
 
-            <input
-              type="text"
-              placeholder="Price"
-              value={propertyPrice}
-              onChange={(e) => setPropertyPrice(e.target.value)}
-            />
+          propertyPrice={propertyPrice}
+          setPropertyPrice={setPropertyPrice}
 
-          <select
-            value={propertyStatus}
-            onChange={(e) => setPropertyStatus(e.target.value)}
-          >
-            <option>Available</option>
-            <option>Pending</option>
-            <option>Sold</option>
-          </select>
-        </div>
+          propertyStatus={propertyStatus}
+          setPropertyStatus={setPropertyStatus}
+        />
       </div>
 
 <input
@@ -142,84 +124,14 @@ function deleteProperty(id) {
   }}
 />
 
-      <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            backgroundColor: "#fff",
-            borderRadius: "12px",
-            overflow: "hidden"
-          }}
-        >
-      <thead>
-        <tr>
-          <th style={tableHeaderStyle}>Property</th>
-          <th style={tableHeaderStyle}>Price</th>
-          <th style={tableHeaderStyle}>Status</th>
-          <th style={tableHeaderStyle}>Actions</th>
-        </tr>
-      </thead>
-
-      <tbody>
-
-	{filteredProperties.map((property) => (
-          <tr key={property.id}>
-            <td style={tableCellStyle}>{property.name}</td>
-            <td style={tableCellStyle}>{property.price}</td>
-            <td style={tableCellStyle}>
-            <span
-              style={{
-                padding: "6px 12px",
-                borderRadius: "999px",
-                color: "#fff",
-                backgroundColor:
-                  property.status === "Available"
-                    ? "#10b981"
-                    : property.status === "Pending"
-                    ? "#f59e0b"
-                    : "#ef4444",
-                fontSize: "13px",
-                fontWeight: "600"
-              }}
-            >
-              {property.status}
-            </span>
-          </td>
-          
-          <td style={tableCellStyle}>
-              <button
-                onClick={() => editProperty(property)}
-                style={{
-                  backgroundColor: "#3b82f6",
-                  color: "#fff",
-                  border: "none",
-                  padding: "6px 12px",
-                  borderRadius: "6px",
-                  cursor: "pointer",
-                  marginRight: "8px"
-                }}
-              >
-                Edit
-              </button>
-
-              <button
-                onClick={() => deleteProperty(property.id)}
-                style={{
-                  backgroundColor: "#ef4444",
-                  color: "#fff",
-                  border: "none",
-                  padding: "6px 12px",
-                  borderRadius: "6px",
-                  cursor: "pointer"
-                }}
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+<PropertyTable
+  filteredProperties={filteredProperties}
+  editProperty={editProperty}
+  deleteProperty={deleteProperty}
+  tableHeaderStyle={tableHeaderStyle}
+  tableCellStyle={tableCellStyle}
+/>
+      
 
     </div>
   );
