@@ -1,0 +1,14 @@
+
+.lead-form {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.lead-input,
+.lead-select {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+}
