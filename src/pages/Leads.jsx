@@ -107,6 +107,21 @@ function Leads() {
         {editingId !== null ? "Update Lead" : "+ Add Lead"}
       </button>
 
+      {editingId !== null && (
+          <button
+            onClick={() => {
+              setEditingId(null);
+              setLeadName("");
+              setLeadPhone("");
+              setLeadSource("");
+              setLeadStatus("New");
+            }}
+            className="cancel-button"
+          >
+            Cancel
+          </button>
+        )}
+
       <LeadForm
         leadName={leadName}
         setLeadName={setLeadName}
