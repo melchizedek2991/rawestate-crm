@@ -12,12 +12,12 @@ function ClientTable({
                 <tr>
                     <th className="client-header">Name</th>
                     <th className="client-header">Phone Number</th>
-                    <th className="client-header">/Email</th>
+                    <th className="client-header">Email</th>
                 </tr>
             </thead>
 
             <tbody>
-                {filteredClients.map((client) =>(
+                {clients.map((client) =>(
                     <ClientRow
                     key={client.id}
                     client={client}
@@ -30,3 +30,5 @@ function ClientTable({
         </table>
     )
 }
+
+export default ClientTable;
