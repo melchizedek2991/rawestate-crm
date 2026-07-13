@@ -40,8 +40,16 @@ function Leads() {
     lead.name.toLowerCase().includes(search.toLowerCase())
   );
 
-      function addLead() {
+function addLead() {
 
+  if (
+    leadName.trim() === "" ||
+    leadPhone.trim() === "" ||
+    leadSource.trim() === ""
+  ) {
+    alert("Please fill in all fields.");
+    return;
+  }
   if (editingId !== null) {
 
     const updatedLeads = leads.map((lead) =>
@@ -62,6 +70,26 @@ function Leads() {
 
         } else {
 
+        if (editingId !== null) {
+
+          const updatedLeads = leads.map((lead) =>
+            lead.id === editingId
+              ? {
+                  ...lead,
+                  name: leadName,
+                  phone: leadPhone,
+                  source: leadSource,
+                  status: leadStatus
+                }
+              : lead
+          );
+
+          setLeads(updatedLeads);
+
+          setEditingId(null);
+
+        } else {
+
           const newLead = {
             id: Date.now(),
             name: leadName,
@@ -71,7 +99,9 @@ function Leads() {
           };
 
           setLeads([...leads, newLead]);
+
         }
+      }
 
         setLeadName("");
         setLeadPhone("");
@@ -79,7 +109,7 @@ function Leads() {
         setLeadStatus("New");
       }
 
-    function deleteLead(id) {
+  function deleteLead(id) {
       const updatedLeads = leads.filter(
         (lead) => lead.id !== id
       );
