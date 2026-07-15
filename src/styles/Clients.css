@@ -1,0 +1,32 @@
+.client-button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.client-button:hover {
+  opacity: 0.9;
+}
+
+.search-client { 
+  padding: 12px;
+  width: 300px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  margin-bottom: 20px;
+}
+
+.clients-page {
+    padding: 20px;
+}
+
+.page-title {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+

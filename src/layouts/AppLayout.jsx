@@ -5,6 +5,7 @@ import Topbar from "../components/Topbar";
 import Dashboard from "../pages/Dashboard";
 import Properties from "../pages/Properties";
 import Leads from "../pages/Leads";
+import Clients from "../pages/Clients";
 
 function AppLayout() {
 
@@ -40,6 +41,7 @@ function AppLayout() {
             {activeItem === "Dashboard" && <Dashboard />}
             {activeItem === "Properties" && <Properties />}
             {activeItem === "Leads" && <Leads />}
+            {activeItem === "Clients" && <Clients />}
 
         </main>
       </div>

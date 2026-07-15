@@ -1,0 +1,22 @@
+.table-cell {
+  padding: 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.action-button {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+.edit-button {
+  background-color: #3b82f6;
+}
+
+.delete-button {
+  background-color: #ef4444;
+}

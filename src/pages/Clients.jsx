@@ -1,4 +1,6 @@
 import ClientForm from "../components/ClientForm";
+import ClientTable from "../components/ClientTable";
+import "../styles/Clients.css";
 import { useState } from "react";
 
 function Clients() {
@@ -83,18 +85,68 @@ function addClient() {
     setClientEmail("");
     }
 
+    function deleteClient(id) {
+    const updatedClients =
+        clients.filter(
+            (client) => client.id !== id
+        );
+
+        setClients(updatedClients);
+    }
+
+    function editClient(client) {
+    setClientName(client.name);
+    setClientPhone(client.phone);
+    setClientEmail(client.email);
+
+    setEditingId(client.id);
+    }
+
       return (
 
-        <ClientForm
-        clientName={clientName}
-        setClientName={setClientName}
-        clientPhone={clientPhone}
-        setClientPhone={setClientPhone}
-        clientEmail={clientEmail}
-        setClientEmail={setClientEmail}
-        />
+        <div>
+            <h1 className="page-title">
+                Clients
+            </h1>
+
+            <button
+            onClick={addClient}
+            className="client-button"
+            >
+            {editingId !== null
+                ? "Update Client"
+                : "+ Add Client"}
+            </button>
+            
+            <ClientForm
+            clientName={clientName}
+            setClientName={setClientName}
+            clientPhone={clientPhone}
+            setClientPhone={setClientPhone}
+            clientEmail={clientEmail}
+            setClientEmail={setClientEmail}
+            />
+
+            <input
+                className="search-client"
+                type="text"
+                placeholder="Search clients..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+            />
+
+            <ClientTable
+            clients={filteredClients}
+            editClient={editClient}
+            deleteClient={deleteClient}
+            />
+            
+        </div>
+        
         
     );
+
+    
 }
 
 export default Clients;

@@ -1,3 +1,5 @@
+import "../styles/ClientRow.css";
+
 function ClientRow({
   client,
   deleteClient,
