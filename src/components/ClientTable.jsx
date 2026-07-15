@@ -13,6 +13,7 @@ function ClientTable({
                     <th className="client-header">Name</th>
                     <th className="client-header">Phone Number</th>
                     <th className="client-header">Email</th>
+                    <th className="client-header">Actions</th>
                 </tr>
             </thead>
 
