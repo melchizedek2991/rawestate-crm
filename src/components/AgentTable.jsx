@@ -14,7 +14,6 @@ function AgentTable({
                     <th className="table-header">Phone</th>
                     <th className="table-header">Email</th>
                     <th className="table-header">Role</th>
-                    <th className="table-header">Source</th>
                     <th className="table-header">Status</th>
                     <th className="table-header">Actions</th>
                 </tr>

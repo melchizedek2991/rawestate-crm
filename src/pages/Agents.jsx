@@ -131,11 +131,19 @@ return(
         
         <AgentForm
             agentName={agentName}
-            setagentName={setAgentName}
+            setAgentName={setAgentName}
+            
             agentPhone={agentPhone}
             setAgentPhone={setAgentPhone}
+
             agentEmail={agentEmail}
             setAgentEmail={setAgentEmail}
+
+            agentRole={agentRole}
+            setAgentRole={setAgentRole}
+
+            agentStatus={agentStatus}
+            setAgentStatus={setAgentStatus}
         />
 
         <input

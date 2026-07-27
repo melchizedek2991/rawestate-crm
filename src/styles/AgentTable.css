@@ -1,0 +1,20 @@
+.agent-table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+
+.table-header{
+    text-align:left;
+    padding:20px;
+    border-bottom:1px solid #e2e8f0;
+}
+
+
+.table-cell{
+    padding:20px;
+    border-bottom:1px solid #e2e8f0;
+}
