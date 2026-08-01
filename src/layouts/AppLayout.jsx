@@ -7,6 +7,7 @@ import Properties from "../pages/Properties";
 import Leads from "../pages/Leads";
 import Clients from "../pages/Clients";
 import Agents from "../pages/Agents";
+import Reports from "../pages/Reports";
 
 function AppLayout() {
 
@@ -44,6 +45,8 @@ function AppLayout() {
             {activeItem === "Leads" && <Leads />}
             {activeItem === "Clients" && <Clients />}
             {activeItem === "Agents" && <Agents />}
+            {activeItem === "Reports" && <Reports />}
+            
 
         </main>
       </div>

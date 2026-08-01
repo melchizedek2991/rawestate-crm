@@ -1,0 +1,26 @@
+.report-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    transition: .3s;
+}
+
+.report-card:hover{
+    transform: translateY(-4px);
+    box-shadow:0 10px 20px rgba(0,0,0,.12);
+}
+
+.report-card h3{
+    margin:0;
+    color:#64748b;
+    font-size:15px;
+    font-weight:600;
+}
+
+.report-card p{
+    margin-top:12px;
+    font-size:30px;
+    font-weight:bold;
+    color:#0f172a;
+}

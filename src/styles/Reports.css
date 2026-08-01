@@ -1,0 +1,23 @@
+.report-filter {
+    margin-bottom: 25px;
+}
+
+.report-filter select {
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    background: white;
+}
+.report-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.report-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
