@@ -1,0 +1,46 @@
+.transactions{
+
+    margin-top:30px;
+    background:#fff;
+    border-radius:14px;
+    padding:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+}
+
+.transactions h2{
+
+    margin-bottom:20px;
+    color:#1e293b;
+
+}
+
+.transactions table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+.transactions th{
+
+    text-align:left;
+    padding:15px;
+    background:#f8fafc;
+    color:#475569;
+    font-size:14px;
+
+}
+
+.transactions td{
+
+    padding:15px;
+    border-top:1px solid #e2e8f0;
+
+}
+
+.transactions tr:hover{
+
+    background:#f8fafc;
+
+}
