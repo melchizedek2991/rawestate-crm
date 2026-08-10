@@ -44,3 +44,26 @@
     background:#f8fafc;
 
 }
+
+.status{
+
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+
+}
+
+.completed{
+
+    background:#dcfce7;
+    color:#15803d;
+
+}
+
+.pending{
+
+    background:#fef3c7;
+    color:#b45309;
+
+}

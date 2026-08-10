@@ -1,7 +1,7 @@
 import "../styles/RecentTransactions.css";
 
 function RecentTransactions() {
-
+  
     const transactions = [
 
         {
@@ -68,7 +68,8 @@ function RecentTransactions() {
                             <td>{transaction.client}</td>
                             <td>{transaction.property}</td>
                             <td>{transaction.amount}</td>
-			    <td>
+			                
+                            <td>
 
                                <span
                                    className={

@@ -1,38 +1,51 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AgentForm from "../components/AgentForm";
 import AgentTable from "../components/AgentTable";
 import "../styles/Agents.css";
 
 function Agents() {
-    const [agents, setAgents] = useState ([
-        {
-            id: 1,
-            name: "Taiwo Hassan",
-            phone: "09036647774",
-            email: "taiwohassan@gmail.com",
-            role: "sales officer",
-            status: "Manager",
-        },
+    const [agents, setAgents] = useState(() => {
 
-        {
-            id: 2,
-            name: "Ahmed Hassan",
-            phone: "08172635496",
-            email: "ahmedassan@gmail.com",
-            role: "Branch Manager",
-            status: "AMD",
-        },
+    const savedAgents = localStorage.getItem("agents");
 
-        {
-            id: 3,
-            name: "Debby Osinowo",
-            phone: "09182736495",
-            email: "debbyosinowo@gmail.com",
-            role: "sales Rep",
-            status: "Junior Staff",
-        },
+    if (savedAgents) {
 
-    ]);
+        return JSON.parse(savedAgents);
+
+            }
+
+            return [
+
+                {
+                    id:1,
+                    name:"Taiwo Hassan",
+                    phone:"09036647774",
+                    email:"taiwohassan@gmail.com",
+                    role:"Sales Officer",
+                    status:"Manager",
+                },
+
+                {
+                    id:2,
+                    name:"Ahmed Hassan",
+                    phone:"08172635496",
+                    email:"ahmedassan@gmail.com",
+                    role:"Branch Manager",
+                    status:"AMD",
+                },
+
+                {
+                    id:3,
+                    name:"Debby Osinowo",
+                    phone:"09182736495",
+                    email:"debbyosinowo@gmail.com",
+                    role:"Sales Rep",
+                    status:"Junior Staff",
+                }
+
+            ];
+
+        });
 
     const [agentName, setAgentName] = useState("");
     const [agentPhone, setAgentPhone] = useState("");
@@ -41,6 +54,18 @@ function Agents() {
     const [agentStatus, setAgentStatus] = useState("");
     const [search, setSearch] = useState("");
     const [editingId, setEditingId] = useState(null);
+
+    useEffect(() => {
+
+    localStorage.setItem(
+
+            "agents",
+
+            JSON.stringify(agents)
+
+        );
+
+    }, [agents]);
 
     const filteredAgents  = agents.filter((agent) => 
     agent.name.toLowerCase().includes(search.toLowerCase())

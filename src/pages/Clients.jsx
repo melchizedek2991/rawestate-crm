@@ -1,31 +1,43 @@
 import ClientForm from "../components/ClientForm";
 import ClientTable from "../components/ClientTable";
 import "../styles/Clients.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Clients() {
-    const [clients, setClients] = useState([
-        {
+
+        const [clients, setClients] = useState(() => {
+
+        const savedClients = localStorage.getItem("clients");
+
+        if (savedClients) {
+            return JSON.parse(savedClients);
+        }
+
+        return [
+            // KEEP YOUR EXISTING CLIENT DATA HERE
+            {
             id: 1,
             name: "Mike Tyson",
             phone: "08174648393",
             email: "miketyson@gmail.com",
-        },
+            },
 
-        {
-            id: 2,
-            name: "Tyler Perry",
-            phone: "0907484746",
-            email: "tyler@gmail.com",
-        },
+            {
+                id: 2,
+                name: "Tyler Perry",
+                phone: "0907484746",
+                email: "tyler@gmail.com",
+            },
 
-        {
-            id: 3,
-            name: "Arome Chike",
-            phone: "08155985598",
-            email: "aromechike@gmail.com"
-        },
-    ]);
+            {
+                id: 3,
+                name: "Arome Chike",
+                phone: "08155985598",
+                email: "aromechike@gmail.com"
+            },
+        ];
+
+    });
 
         const [clientName, setClientName] = useState("");
         const [clientPhone, setClientPhone] = useState("");
@@ -33,6 +45,15 @@ function Clients() {
 
         const [search, setSearch] = useState("");
         const [editingId, setEditingId] = useState(null);
+
+        useEffect(() => {
+
+        localStorage.setItem(
+            "clients",
+            JSON.stringify(clients)
+            );
+
+        }, [clients]);
 
         const filteredClients = clients.filter((client) => 
         client.name.toLowerCase().includes(search.toLowerCase())

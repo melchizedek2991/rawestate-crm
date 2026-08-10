@@ -1,40 +1,74 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropertyForm from "../components/PropertyForm";
 import PropertyTable from "../components/PropertyTable";
 
 function Properties() {
-    const [properties, setProperties] = useState([
-          {
-            id: 1,
-            name: "Lekki Duplex",
-            price: "₦120M",
-            status: "Available"
-          },
-          {
-            id: 2,
-            name: "Abuja Villa",
-            price: "₦180M",
-            status: "Pending"
-          },
-          {
-            id: 3,
-            name: "Ikoyi Penthouse",
-            price: "₦350M",
-            status: "Sold"
-          },
-          {
-            id: 4,
-            name: "Asokoro Mansion",
-            price: "₦450M",
-            status: "Available"
-          }
-        ]);
+    const [properties, setProperties] = useState(() => {
+
+        const savedProperties = localStorage.getItem("properties");
+
+        if (savedProperties) {
+            return JSON.parse(savedProperties);
+        }
+          return[
+            {
+              id: 1,
+              name: "Lekki Duplex",
+              price: "₦120M",
+              status: "Available",
+              agentId: 1,
+            },
+            {
+              id: 2,
+              name: "Abuja Villa",
+              price: "₦180M",
+              status: "Pending",
+               agentId: 2,
+            },
+            {
+              id: 3,
+              name: "Ikoyi Penthouse",
+              price: "₦350M",
+              status: "Sold",
+               agentId: 1,
+            },
+            {
+              id: 4,
+              name: "Asokoro Mansion",
+              price: "₦450M",
+              status: "Available",
+              agentId: 2,
+            }
+          ]
+
+        });
+
+const [agents] = useState(() => {
+
+    const savedAgents = localStorage.getItem("agents");
+
+    if (savedAgents) {
+        return JSON.parse(savedAgents);
+    }
+
+    return [];
+});
 
 const [search, setSearch] = useState("");
 const [propertyName, setPropertyName] = useState("");
 const [propertyPrice, setPropertyPrice] = useState("");
 const [propertyStatus, setPropertyStatus] = useState("Available");
 const [editingId, setEditingId] = useState(null);
+
+useEffect(() => {
+
+        localStorage.setItem(
+            "properties",
+            JSON.stringify(properties)
+        );
+
+    }, [properties]);
+
 const filteredProperties = properties.filter((property) =>
   property.name.toLowerCase().includes(search.toLowerCase())
 );
