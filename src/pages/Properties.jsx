@@ -162,6 +162,7 @@ function deleteProperty(id) {
   filteredProperties={filteredProperties}
   editProperty={editProperty}
   deleteProperty={deleteProperty}
+  agents={agents}
   tableHeaderStyle={tableHeaderStyle}
   tableCellStyle={tableCellStyle}
 />

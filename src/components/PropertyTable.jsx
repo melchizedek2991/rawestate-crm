@@ -5,6 +5,9 @@ function PropertyTable({
   filteredProperties,
   editProperty,
   deleteProperty,
+  agents,
+  tableHeaderStyle,
+  tableCellStyle,
 }) {
   return (
       <table className="property-table">
@@ -13,6 +16,7 @@ function PropertyTable({
           <th className="table-header">Property</th>
           <th className="table-header">Price</th>
           <th className="table-header">Status</th>
+          <th className="table-header">Agent</th>
           <th className="table-header">Actions</th>
         </tr>
       </thead>
@@ -25,7 +29,9 @@ function PropertyTable({
         property={property}
         editProperty={editProperty}
         deleteProperty={deleteProperty}
+        agents={agents}
         />
+        
         ))}
 
       </tbody>

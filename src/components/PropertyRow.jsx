@@ -2,14 +2,19 @@ function PropertyRow({
   property,
   editProperty,
   deleteProperty,
+  agents,
 }) 
 
 {
   return (
     <tr>
-      <td className="table-cell">{property.name}</td>
-     
-      <td className="table-cell">{property.price}</td>
+      <td className="table-cell">
+        {property.name}
+      </td>
+
+      <td className="table-cell">
+        {property.price}
+      </td>
 
       <td className="table-cell">
         <span
@@ -29,6 +34,13 @@ function PropertyRow({
         >
           {property.status}
         </span>
+      </td>
+
+      <td className="table-cell">
+        {
+          agents.find((agent) => agent.id === property.agentId)?.name
+          || "Unassigned"
+        }
       </td>
 
       <td className="table-cell">
