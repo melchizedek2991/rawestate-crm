@@ -58,6 +58,7 @@ const [search, setSearch] = useState("");
 const [propertyName, setPropertyName] = useState("");
 const [propertyPrice, setPropertyPrice] = useState("");
 const [propertyStatus, setPropertyStatus] = useState("Available");
+const [agentId, setAgentId] = useState("");
 const [editingId, setEditingId] = useState(null);
 
 useEffect(() => {
@@ -81,25 +82,49 @@ function deleteProperty(id) {
   setProperties(updatedProperties);
 }
 
-    function addProperty() {
-      const newProperty = {
-        id: Date.now(),
-        name: propertyName,
-        price: propertyPrice,
-        status: propertyStatus
-      };
+  function addProperty() {
 
-      setProperties([...properties, newProperty]);
+  if (editingId !== null) {
+
+    const updatedProperties = properties.map((property) =>
+      property.id === editingId
+        ? {
+            ...property,
+            name: propertyName,
+            price: propertyPrice,
+            status: propertyStatus,
+            agentId: Number(agentId)
+          }
+        : property
+    );
+
+    setProperties(updatedProperties);
+    setEditingId(null);
+
+  } else {
+
+    const newProperty = {
+      id: Date.now(),
+      name: propertyName,
+      price: propertyPrice,
+      status: propertyStatus,
+      agentId: Number(agentId)
+    };
+
+    setProperties([...properties, newProperty]);
+    }
 
       setPropertyName("");
       setPropertyPrice("");
       setPropertyStatus("Available");
+      setAgentId("");
     }
 
     function editProperty(property) {
       setPropertyName(property.name);
       setPropertyPrice(property.price);
       setPropertyStatus(property.status);
+      setAgentId(property.agentId);
 
       setEditingId(property.id);
     }
@@ -129,7 +154,7 @@ function deleteProperty(id) {
            fontWeight: "600"
           }}
         >
-         + Add Property
+         {editingId !== null ? "Update Property" : "+ Add Property"}
         </button>
         
         <PropertyForm
@@ -141,6 +166,10 @@ function deleteProperty(id) {
 
           propertyStatus={propertyStatus}
           setPropertyStatus={setPropertyStatus}
+
+          agents={agents}
+          agentId={agentId}
+          setAgentId={setAgentId}
         />
       </div>
 

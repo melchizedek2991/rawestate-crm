@@ -6,7 +6,10 @@ function PropertyForm({
   propertyPrice,
   setPropertyPrice,
   propertyStatus,
-  setPropertyStatus
+  setPropertyStatus,
+  agents,
+  agentId,
+  setAgentId,
 }) {
   return (
         <div className="property-form">
@@ -27,13 +30,27 @@ function PropertyForm({
             />
 
             <select
-                className="property-select"
-                value={propertyStatus}
-                onChange={(e) => setPropertyStatus(e.target.value)}
+            className="property-select"
+            value={propertyStatus}
+            onChange={(e) => setPropertyStatus(e.target.value)}
             >
-                <option>Available</option>
-                <option>Pending</option>
-                <option>Sold</option>
+            <option>Available</option>
+            <option>Pending</option>
+            <option>Sold</option>
+            </select>
+
+            <select
+            className="property-select"
+            value={agentId}
+            onChange={(e) => setAgentId(Number(e.target.value))}
+            >
+            <option value="">Select Agent</option>
+
+            {agents.map((agent) => (
+                <option key={agent.id} value={agent.id}>
+                {agent.name}
+                </option>
+            ))}
             </select>
         </div>
   );
