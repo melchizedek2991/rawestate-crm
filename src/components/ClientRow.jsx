@@ -1,34 +1,49 @@
 import "../styles/ClientRow.css";
 
 function ClientRow({
-  client,
-  deleteClient,
-  editClient
+    client,
+    deleteClient,
+    editClient,
+    agents,
 }) {
-    return(
-    <tr>
-      <td className="table-cell">{client.name}</td>
+    const agent = agents.find(
+        (agent) => agent.id === client.agentId
+    );
 
-      <td className="table-cell">{client.phone}</td>
+    return (
+        <tr>
+            <td className="table-cell">
+                {client.name}
+            </td>
 
-      <td className="table-cell">{client.email}</td>
-      
-        <td className="table-cell">
-          <button
-            className="action-button edit-button"
-            onClick={() => editClient(client)}
-          >
-            Edit
-          </button>
+            <td className="table-cell">
+                {client.phone}
+            </td>
 
-          <button
-            className="action-button delete-button"
-            onClick={() => deleteClient(client.id)}
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
+            <td className="table-cell">
+                {client.email}
+            </td>
+
+            <td className="table-cell">
+                {agent ? agent.name : "No Agent"}
+            </td>
+
+            <td className="table-cell">
+                <button
+                    className="action-button edit-button"
+                    onClick={() => editClient(client)}
+                >
+                    Edit
+                </button>
+
+                <button
+                    className="action-button delete-button"
+                    onClick={() => deleteClient(client.id)}
+                >
+                    Delete
+                </button>
+            </td>
+        </tr>
     );
 }
 

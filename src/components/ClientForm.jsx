@@ -7,6 +7,9 @@ function ClientForm({
     setClientPhone,
     clientEmail,
     setClientEmail,
+    agents,
+    agentId,
+    setAgentId,
 })  {
     return(
         <div className="client-form">
@@ -33,6 +36,19 @@ function ClientForm({
             value={clientEmail}
             onChange={(e) => setClientEmail(e.target.value)}
             />
+            <select
+                className="client-input"
+                value={agentId}
+                onChange={(e) => setAgentId(Number(e.target.value))}
+            >
+                <option value="">Select Agent</option>
+
+                {agents.map((agent) => (
+                    <option key={agent.id} value={agent.id}>
+                        {agent.name}
+                    </option>
+                ))}
+            </select>
 
         </div>
         

@@ -1,10 +1,11 @@
- import ClientRow from "./ClientRow";
+import ClientRow from "./ClientRow";
 import "../styles/ClientTable.css";
 
 function ClientTable({
     clients,
     deleteClient,
     editClient,
+    agents,
 }) {
     return (
         <table className="client-table">
@@ -13,23 +14,25 @@ function ClientTable({
                     <th className="client-header">Name</th>
                     <th className="client-header">Phone Number</th>
                     <th className="client-header">Email</th>
+                    <th className="client-header">Agent</th>
                     <th className="client-header">Actions</th>
                 </tr>
             </thead>
 
             <tbody>
-                {clients.map((client) =>(
+                {clients.map((client) => (
                     <ClientRow
-                    key={client.id}
-                    client={client}
-                    editClient={editClient}
-                    deleteClient={deleteClient}
-                />
+                        key={client.id}
+                        client={client}
+                        editClient={editClient}
+                        deleteClient={deleteClient}
+                        agents={agents}
+                    />
                 ))}
             </tbody>
 
         </table>
-    )
+    );
 }
 
 export default ClientTable;

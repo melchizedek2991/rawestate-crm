@@ -20,6 +20,7 @@ function Clients() {
             name: "Mike Tyson",
             phone: "08174648393",
             email: "miketyson@gmail.com",
+            agentId: 1,
             },
 
             {
@@ -27,13 +28,15 @@ function Clients() {
                 name: "Tyler Perry",
                 phone: "0907484746",
                 email: "tyler@gmail.com",
+                agentId: 2,
             },
 
             {
                 id: 3,
                 name: "Arome Chike",
                 phone: "08155985598",
-                email: "aromechike@gmail.com"
+                email: "aromechike@gmail.com",
+                agentId: 1,
             },
         ];
 
@@ -42,6 +45,18 @@ function Clients() {
         const [clientName, setClientName] = useState("");
         const [clientPhone, setClientPhone] = useState("");
         const [clientEmail, setClientEmail] = useState("");
+        const [agentId, setAgentId] = useState("");
+
+        const [agents] = useState(() => {
+
+        const savedAgents = localStorage.getItem("agents");
+
+            if (savedAgents) {
+                return JSON.parse(savedAgents);
+            }
+
+            return [];
+        });
 
         const [search, setSearch] = useState("");
         const [editingId, setEditingId] = useState(null);
@@ -59,14 +74,13 @@ function Clients() {
         client.name.toLowerCase().includes(search.toLowerCase())
     );
 
+
 function addClient() {
-    if(
-        clientName.trim() === "" ||   
+    if (
+        clientName.trim() === "" ||
         clientPhone.trim() === "" ||
-        clientEmail.trim() === "" 
-    ) 
-    
-    {
+        clientEmail.trim() === ""
+    ) {
         alert("please fill in all fields.");
         return;
     }
@@ -74,37 +88,38 @@ function addClient() {
     if (editingId !== null) {
 
         const updatedClients = clients.map((client) =>
-        client.id === editingId
-            ? {
-                ...client,
-                name: clientName,
-                phone: clientPhone,
-                email: clientEmail 
-            }
-
-            :client
+            client.id === editingId
+                ? {
+                    ...client,
+                    name: clientName,
+                    phone: clientPhone,
+                    email: clientEmail,
+                    agentId: Number(agentId),
+                }
+                : client
         );
 
         setClients(updatedClients);
         setEditingId(null);
-        
-        } else {
-            
+
+    } else {
+
         const newClient = {
             id: Date.now(),
             name: clientName,
             phone: clientPhone,
             email: clientEmail,
+            agentId: Number(agentId),
         };
 
         setClients([...clients, newClient]);
-    }
+            }
 
-
-    setClientName("");
-    setClientPhone("");
-    setClientEmail("");
-    }
+            setClientName("");
+            setClientPhone("");
+            setClientEmail("");
+            setAgentId("");
+        }
 
     function deleteClient(id) {
     const updatedClients =
@@ -119,6 +134,7 @@ function addClient() {
     setClientName(client.name);
     setClientPhone(client.phone);
     setClientEmail(client.email);
+    setAgentId(client.agentId);
 
     setEditingId(client.id);
     }
@@ -146,6 +162,9 @@ function addClient() {
             setClientPhone={setClientPhone}
             clientEmail={clientEmail}
             setClientEmail={setClientEmail}
+            agents={agents}
+            agentId={agentId}
+            setAgentId={setAgentId}
             />
 
             <input
@@ -160,6 +179,7 @@ function addClient() {
             clients={filteredClients}
             editClient={editClient}
             deleteClient={deleteClient}
+            agents={agents}
             />
             
         </div>
