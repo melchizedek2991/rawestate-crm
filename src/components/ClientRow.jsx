@@ -5,9 +5,14 @@ function ClientRow({
     deleteClient,
     editClient,
     agents,
+    properties,
 }) {
     const agent = agents.find(
         (agent) => agent.id === client.agentId
+    );
+
+       const property = properties.find(
+        (property) => property.id === client.propertyId
     );
 
     return (
@@ -26,6 +31,10 @@ function ClientRow({
 
             <td className="table-cell">
                 {agent ? agent.name : "No Agent"}
+            </td>
+
+             <td className="table-cell">
+                {property ? property.name : "No Property"}
             </td>
 
             <td className="table-cell">

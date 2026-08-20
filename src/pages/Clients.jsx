@@ -46,6 +46,7 @@ function Clients() {
         const [clientPhone, setClientPhone] = useState("");
         const [clientEmail, setClientEmail] = useState("");
         const [agentId, setAgentId] = useState("");
+        const [propertyId, setPropertyId] = useState("");
 
         const [agents] = useState(() => {
 
@@ -53,6 +54,18 @@ function Clients() {
 
             if (savedAgents) {
                 return JSON.parse(savedAgents);
+            }
+
+            return []; 
+        });
+
+
+        const [properties] = useState(() => {
+
+        const savedProperties = localStorage.getItem("properties");
+
+        if (savedProperties) {
+                return JSON.parse(savedProperties);
             }
 
             return [];
@@ -95,6 +108,7 @@ function addClient() {
                     phone: clientPhone,
                     email: clientEmail,
                     agentId: Number(agentId),
+                    propertyId: Number(propertyId),
                 }
                 : client
         );
@@ -110,6 +124,7 @@ function addClient() {
             phone: clientPhone,
             email: clientEmail,
             agentId: Number(agentId),
+            propertyId: Number(propertyId),
         };
 
         setClients([...clients, newClient]);
@@ -119,6 +134,7 @@ function addClient() {
             setClientPhone("");
             setClientEmail("");
             setAgentId("");
+            setPropertyId("");
         }
 
     function deleteClient(id) {
@@ -135,6 +151,7 @@ function addClient() {
     setClientPhone(client.phone);
     setClientEmail(client.email);
     setAgentId(client.agentId);
+    setPropertyId(client.propertyId);
 
     setEditingId(client.id);
     }
@@ -165,6 +182,9 @@ function addClient() {
             agents={agents}
             agentId={agentId}
             setAgentId={setAgentId}
+            properties={properties}
+            propertyId={propertyId}
+            setPropertyId={setPropertyId}
             />
 
             <input
@@ -180,6 +200,7 @@ function addClient() {
             editClient={editClient}
             deleteClient={deleteClient}
             agents={agents}
+            properties={properties}
             />
             
         </div>

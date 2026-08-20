@@ -10,6 +10,9 @@ function ClientForm({
     agents,
     agentId,
     setAgentId,
+    properties,
+    propertyId,
+    setPropertyId,
 })  {
     return(
         <div className="client-form">
@@ -46,6 +49,20 @@ function ClientForm({
                 {agents.map((agent) => (
                     <option key={agent.id} value={agent.id}>
                         {agent.name}
+                    </option>
+                ))}
+            </select>
+
+            <select
+                className="client-input"
+                value={propertyId}
+                onChange={(e) => setPropertyId(Number(e.target.value))}
+            >
+                <option value="">Select Property</option>
+
+                {properties.map((property) => (
+                    <option key={property.id} value={property.id}>
+                        {property.name}
                     </option>
                 ))}
             </select>

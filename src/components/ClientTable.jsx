@@ -6,6 +6,7 @@ function ClientTable({
     deleteClient,
     editClient,
     agents,
+    properties,
 }) {
     return (
         <table className="client-table">
@@ -15,6 +16,7 @@ function ClientTable({
                     <th className="client-header">Phone Number</th>
                     <th className="client-header">Email</th>
                     <th className="client-header">Agent</th>
+                    <th className="client-header">Property</th>
                     <th className="client-header">Actions</th>
                 </tr>
             </thead>
@@ -27,6 +29,7 @@ function ClientTable({
                         editClient={editClient}
                         deleteClient={deleteClient}
                         agents={agents}
+                        properties={properties}
                     />
                 ))}
             </tbody>
