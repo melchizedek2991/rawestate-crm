@@ -4,7 +4,9 @@ import "../styles/LeadTable.css";
 function LeadTable({
   leads,
   deleteLead,
-  editLead
+  editLead,
+  agents,
+  properties
 }) {
   return (
     <table className="lead-table">
@@ -14,6 +16,8 @@ function LeadTable({
           <th className="table-header">Phone</th>
           <th className="table-header">Source</th>
           <th className="table-header">Status</th>
+          <th className="table-header">Agent</th>
+          <th className="table-header">Property</th>
           <th className="table-header">Actions</th>
         </tr>
       </thead>
@@ -25,6 +29,8 @@ function LeadTable({
             lead={lead}
             deleteLead={deleteLead}
             editLead={editLead}
+            agents={agents}
+            properties={properties}
           />
         ))}
       </tbody>

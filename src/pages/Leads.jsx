@@ -215,6 +215,8 @@ return (
             leads={filteredLeads}
             deleteLead={deleteLead}
             editLead={editLead}
+            agents={agents}
+            properties={properties}
         />
 
     </div>
