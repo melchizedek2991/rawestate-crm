@@ -8,7 +8,13 @@ function LeadForm({
   leadSource,
   setLeadSource,
   leadStatus,
-  setLeadStatus
+  setLeadStatus,
+  agents,
+  agentId,
+  setAgentId,
+  properties,
+  propertyId,
+  setPropertyId
 }) {
   return (
     <div className="lead-form">
@@ -37,6 +43,35 @@ function LeadForm({
         onChange={(e) => setLeadSource(e.target.value)}
       />
 
+      
+      <select
+        className="lead-select"
+        value={agentId}
+        onChange={(e) => setAgentId(Number(e.target.value))}
+      >
+        <option value="">Select Agent</option>
+
+        {agents.map((agent) => (
+          <option key={agent.id} value={agent.id}>
+            {agent.name}
+          </option>
+        ))}
+      </select>
+
+      <select
+        className="lead-select"
+        value={propertyId}
+        onChange={(e) => setPropertyId(Number(e.target.value))}
+      >
+        <option value="">Select Property</option>
+
+        {properties.map((property) => (
+          <option key={property.id} value={property.id}>
+            {property.name}
+          </option>
+        ))}
+      </select>
+
       <select
         className="lead-select"
         value={leadStatus}
@@ -46,6 +81,7 @@ function LeadForm({
         <option>Contacted</option>
         <option>Qualified</option>
       </select>
+
 
     </div>
   );
