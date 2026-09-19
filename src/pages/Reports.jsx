@@ -9,6 +9,8 @@ import RecentTransactions from "../components/RecentTransactions";
 import "../styles/Reports.css";
 
 function Reports() {
+
+    const [filter, setFilter] = useState("This Month");
     
     const properties = JSON.parse(
         localStorage.getItem("properties") || "[]"
@@ -36,15 +38,15 @@ function Reports() {
 
         return items.filter((item) => {
 
+            if (filter === "All Time") {
+                return true;
+            }
+
             if (!item.createdAt) {
                 return false;
             }
 
             const createdDate = new Date(item.createdAt);
-
-            if (filter === "All Time") {
-                return true;
-            }
 
             if (filter === "Today") {
 
@@ -116,70 +118,33 @@ function Reports() {
             filter
         );
 
-
-    const reportData = {
-
-    "Today": [
-
-        { id:1, title:"Revenue", value:"₦450,000" },
-        { id:2, title:"Properties", value:"2" },
-        { id:3, title:"Clients", value:"1" },
-        { id:4, title:"Agents", value:"3" },
-        { id:5, title:"Leads", value:"5" },
-        { id:6, title:"Expenses", value:"₦100,000" },
-        { id:7, title:"Profit", value:"₦350,000" },
-
-    ],
-
-    "This Week": [
-
-        { id:1, title:"Revenue", value:"₦8,500,000" },
-        { id:2, title:"Properties", value:"15" },
-        { id:3, title:"Clients", value:"9" },
-        { id:4, title:"Agents", value:"10" },
-        { id:5, title:"Leads", value:"25" },
-        { id:6, title:"Expenses", value:"₦2,500,000" },
-        { id:7, title:"Profit", value:"₦6,000,000" },
-
-    ],
-
-    "This Month": [
-
-        { id:2, title:"Properties", value:properties.length },
-        { id:3, title:"Clients", value:clients.length },
-        { id:4, title:"Agents", value:agents.length },
-        { id:5, title:"Leads", value:leads.length },
-        { id:6, title:"Tasks", value:tasks.length },
-
-    ],
-
-    "This Year": [
-
-        { id:1, title:"Revenue", value:"₦950,000,000" },
-        { id:2, title:"Properties", value:"850" },
-        { id:3, title:"Clients", value:"430" },
-        { id:4, title:"Agents", value:"65" },
-        { id:5, title:"Leads", value:"1,400" },
-        { id:6, title:"Expenses", value:"₦300,000,000" },
-        { id:7, title:"Profit", value:"₦650,000,000" },
-
-    ],
-
-    "All Time": [
-
-        { id:1, title:"Revenue", value:"₦2.5 Billion" },
-        { id:2, title:"Properties", value:"2,800" },
-        { id:3, title:"Clients", value:"1,900" },
-        { id:4, title:"Agents", value:"120" },
-        { id:5, title:"Leads", value:"6,500" },
-        { id:6, title:"Expenses", value:"₦900,000,000" },
-        { id:7, title:"Profit", value:"₦1.6 Billion" },
-
-    ]
-
-};
-    const [filter, setFilter] = useState("This Month");
-    const reports = reportData[filter];
+    const reports = [
+        {
+            id: 1,
+            title: "Properties",
+            value: filteredProperties.length,
+        },
+        {
+            id: 2,
+            title: "Clients",
+            value: filteredClients.length,
+        },
+        {
+            id: 3,
+            title: "Agents",
+            value: filteredAgents.length,
+        },
+        {
+            id: 4,
+            title: "Leads",
+            value: filteredLeads.length,
+        },
+        {
+            id: 5,
+            title: "Tasks",
+            value: filteredTasks.length,
+        },
+    ];
 
 
     return(
