@@ -122,7 +122,8 @@ function addLead() {
             source: leadSource,
             status: leadStatus,
             agentId: Number(agentId),
-            propertyId: Number(propertyId)
+            propertyId: Number(propertyId),
+            createdAt: new Date().toISOString()
         };
 
         setLeads([...leads, newLead]);

@@ -125,6 +125,7 @@ function addClient() {
             email: clientEmail,
             agentId: Number(agentId),
             propertyId: Number(propertyId),
+            createdAt: new Date().toISOString()
         };
 
         setClients([...clients, newClient]);

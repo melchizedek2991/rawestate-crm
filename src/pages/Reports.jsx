@@ -10,7 +10,114 @@ import "../styles/Reports.css";
 
 function Reports() {
     
-       const reportData = {
+    const properties = JSON.parse(
+        localStorage.getItem("properties") || "[]"
+            );
+
+            const clients = JSON.parse(
+                localStorage.getItem("clients") || "[]"
+            );
+
+            const agents = JSON.parse(
+                localStorage.getItem("agents") || "[]"
+            );
+
+            const leads = JSON.parse(
+                localStorage.getItem("leads") || "[]"
+            );
+
+            const tasks = JSON.parse(
+                localStorage.getItem("tasks") || "[]"
+            );
+
+    function filterByDate(items, filter) {
+
+        const now = new Date();
+
+        return items.filter((item) => {
+
+            if (!item.createdAt) {
+                return false;
+            }
+
+            const createdDate = new Date(item.createdAt);
+
+            if (filter === "All Time") {
+                return true;
+            }
+
+            if (filter === "Today") {
+
+                return (
+                    createdDate.getDate() === now.getDate() &&
+                    createdDate.getMonth() === now.getMonth() &&
+                    createdDate.getFullYear() === now.getFullYear()
+                );
+
+            }
+
+            if (filter === "This Week") {
+
+                const startOfWeek = new Date(now);
+
+                startOfWeek.setDate(
+                    now.getDate() - now.getDay()
+                );
+
+                startOfWeek.setHours(0, 0, 0, 0);
+
+                return createdDate >= startOfWeek;
+
+            }
+
+            if (filter === "This Month") {
+
+                return (
+                    createdDate.getMonth() === now.getMonth() &&
+                    createdDate.getFullYear() === now.getFullYear()
+                );
+
+            }
+
+            if (filter === "This Year") {
+
+                return (
+                    createdDate.getFullYear() === now.getFullYear()
+                );
+
+            }
+
+            return false;
+        });
+    }
+
+    const filteredProperties = filterByDate(
+            properties,
+            filter
+        );
+
+        const filteredClients = filterByDate(
+            clients,
+            filter
+        );
+
+        const filteredAgents = filterByDate(
+            agents,
+            filter
+        );
+
+        const filteredLeads = filterByDate(
+            leads,
+            filter
+        );
+
+        const filteredTasks = filterByDate(
+            tasks,
+            filter
+        );
+
+
+    const reportData = {
 
     "Today": [
 
@@ -38,13 +145,11 @@ function Reports() {
 
     "This Month": [
 
-        { id:1, title:"Revenue", value:"₦120,000,000" },
-        { id:2, title:"Properties", value:"120" },
-        { id:3, title:"Clients", value:"78" },
-        { id:4, title:"Agents", value:"35" },
-        { id:5, title:"Leads", value:"240" },
-        { id:6, title:"Expenses", value:"₦40,000,000" },
-        { id:7, title:"Profit", value:"₦80,000,000" },
+        { id:2, title:"Properties", value:properties.length },
+        { id:3, title:"Clients", value:clients.length },
+        { id:4, title:"Agents", value:agents.length },
+        { id:5, title:"Leads", value:leads.length },
+        { id:6, title:"Tasks", value:tasks.length },
 
     ],
 

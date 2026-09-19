@@ -1,3 +1,14 @@
+import {
+    BarChart,
+    Bar,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend,
+    ResponsiveContainer
+} from "recharts";
+
 import "../styles/ReportChart.css";
 
 function ReportChart({ filter }) {
@@ -5,38 +16,74 @@ function ReportChart({ filter }) {
     const chartData = {
 
         "Today": [
-            { label: "Revenue", value: 45 },
-            { label: "Expenses", value: 10 },
-            { label: "Profit", value: 35 },
+            {
+                name: "Today",
+                Revenue: 450000,
+                Expenses: 100000,
+                Profit: 350000
+            }
         ],
 
         "This Week": [
-            { label: "Revenue", value: 85 },
-            { label: "Expenses", value: 25 },
-            { label: "Profit", value: 60 },
+            {
+                name: "This Week",
+                Revenue: 8500000,
+                Expenses: 2500000,
+                Profit: 6000000
+            }
         ],
 
         "This Month": [
-            { label: "Revenue", value: 120 },
-            { label: "Expenses", value: 40 },
-            { label: "Profit", value: 80 },
+            {
+                name: "This Month",
+                Revenue: 120000000,
+                Expenses: 40000000,
+                Profit: 80000000
+            }
         ],
 
         "This Year": [
-            { label: "Revenue", value: 950 },
-            { label: "Expenses", value: 300 },
-            { label: "Profit", value: 650 },
+            {
+                name: "This Year",
+                Revenue: 950000000,
+                Expenses: 300000000,
+                Profit: 650000000
+            }
         ],
 
         "All Time": [
-            { label: "Revenue", value: 2500 },
-            { label: "Expenses", value: 900 },
-            { label: "Profit", value: 1600 },
+            {
+                name: "All Time",
+                Revenue: 2500000000,
+                Expenses: 900000000,
+                Profit: 1600000000
+            }
         ]
 
     };
 
-    const bars = chartData[filter];
+    const data = chartData[filter];
+
+    function formatCurrency(value) {
+        return `₦${value.toLocaleString()}`;
+    }
+
+    function formatAxis(value) {
+
+        if (value >= 1000000000) {
+            return `₦${value / 1000000000}B`;
+        }
+
+        if (value >= 1000000) {
+            return `₦${value / 1000000}M`;
+        }
+
+        if (value >= 1000) {
+            return `₦${value / 1000}K`;
+        }
+
+        return `₦${value}`;
+    }
 
     return (
 
@@ -46,31 +93,42 @@ function ReportChart({ filter }) {
 
             <div className="chart-container">
 
-                {bars.map((bar) => (
+                <ResponsiveContainer width="100%" height={350}>
 
-                    <div
-                        className="chart-row"
-                        key={bar.label}
-                    >
+                    <BarChart data={data}>
 
-                        <span className="chart-label">
-                            {bar.label}
-                        </span>
+                        <CartesianGrid strokeDasharray="3 3" />
 
-                        <div className="chart-bar">
+                        <XAxis dataKey="name" />
 
-                            <div
-                                className="chart-fill"
-                                style={{
-                                    width: `${bar.value / 25}%`
-                                }}
-                            ></div>
+                        <YAxis
+                            tickFormatter={formatAxis}
+                        />
 
-                        </div>
+                        <Tooltip
+                            formatter={(value) => formatCurrency(value)}
+                        />
 
-                    </div>
+                        <Legend />
 
-                ))}
+                        <Bar
+                            dataKey="Revenue"
+                            fill="#2563eb"
+                        />
+
+                        <Bar
+                            dataKey="Expenses"
+                            fill="#dc2626"
+                        />
+
+                        <Bar
+                            dataKey="Profit"
+                            fill="#16a34a"
+                        />
+
+                    </BarChart>
+
+                </ResponsiveContainer>
 
             </div>
 

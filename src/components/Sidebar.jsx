@@ -6,6 +6,7 @@ function Sidebar({ activeItem, setActiveItem }) {
     "Leads",
     "Clients",
     "Agents",
+    "Tasks",
     "Reports",
     "Settings"
   ];

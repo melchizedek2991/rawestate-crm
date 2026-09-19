@@ -108,7 +108,8 @@ function deleteProperty(id) {
       name: propertyName,
       price: propertyPrice,
       status: propertyStatus,
-      agentId: Number(agentId)
+      agentId: Number(agentId),
+      createdAt: new Date().toISOString()
     };
 
     setProperties([...properties, newProperty]);

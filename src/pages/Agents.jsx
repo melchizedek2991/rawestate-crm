@@ -110,6 +110,7 @@ function addAgent() {
             email: agentEmail,
             role: agentRole,
             status: agentStatus,
+            createdAt: new Date().toISOString()
         };
 
         setAgents([...agents, newAgent])

@@ -1,13 +1,19 @@
-.report-filter{
-    margin-bottom:25px;
+.report-filter {
+    display: flex;
+    justify-content: flex-end;
 }
 
-.report-filter select{
-    width:220px;
-    padding:12px 16px;
-    border:1px solid #d1d5db;
-    border-radius:10px;
-    font-size:15px;
-    background:white;
-    cursor:pointer;
+.report-filter select {
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    background: white;
+    color: #374151;
+    outline: none;
+}
+
+.report-filter select:focus {
+    border-color: #2563eb;
 }
